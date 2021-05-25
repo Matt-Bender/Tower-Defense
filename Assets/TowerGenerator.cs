@@ -7,7 +7,7 @@ public class TowerGenerator : MonoBehaviour
     TowerBasic towerBasicScript;
     Animator animGen;
 
-    float timeInterval = 0;
+    private float timeInterval = 0;
     [SerializeField] private float produceCooldown;
 
     [SerializeField] private GameObject basicResource;

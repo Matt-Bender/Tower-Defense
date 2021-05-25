@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tempAttack;
     [SerializeField] private GameObject block;
     [SerializeField] private GameObject tempBlock;
+    [SerializeField] private GameObject shoot;
+    [SerializeField] private GameObject tempShoot;
 
     private GameObject tempHeldObject;
     private GameObject heldObject;
@@ -27,20 +29,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float x = topLeftPoint.x;
-        float y = topLeftPoint.y;
-        for (int j = 0; j < 5; j++)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                gridPoints[i, j] = new Vector2(x, y);
-                //Debug.Log(gridPoints[i, j]);
-                //Instantiate(tempGenerator, gridPoints[i, j], Quaternion.identity);
-                x += 2;
-            }
-            x = topLeftPoint.x;
-            y -= 1.5f;
-        }
+        //float x = topLeftPoint.x;
+        //float y = topLeftPoint.y;
+        //for (int j = 0; j < 5; j++)
+        //{
+        //    for (int i = 0; i < 10; i++)
+        //    {
+        //        gridPoints[i, j] = new Vector2(x, y);
+        //        //Debug.Log(gridPoints[i, j]);
+        //        //Instantiate(tempGenerator, gridPoints[i, j], Quaternion.identity);
+        //        x += 2;
+        //    }
+        //    x = topLeftPoint.x;
+        //    y -= 1.5f;
+        //}
 
 
     }
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
             holdingTower = true;
             heldObject = tower;
             tempHeldObject = tempTower;
-            temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), transform.rotation);
+            temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), tower.transform.rotation);
         }
         else
         {
@@ -91,6 +93,11 @@ public class GameManager : MonoBehaviour
     public void BlockOnClick()
     {
         OnClick(block, tempBlock);
+    }
+
+    public void ShootOnClick()
+    {
+        OnClick(shoot, tempShoot);
     }
 
     public bool GetHoldingTower()
