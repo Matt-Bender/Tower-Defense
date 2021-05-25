@@ -5,6 +5,7 @@ using UnityEngine;
 public class TowerShoot : MonoBehaviour
 {
     TowerBasic towerBasicScript;
+    TowerEnemyRangeCheck towerRangeScript;
     Animator animShoot;
 
     private float timeInterval = 0;
@@ -15,12 +16,13 @@ public class TowerShoot : MonoBehaviour
     void Start()
     {
         towerBasicScript = GetComponent<TowerBasic>();
+        towerRangeScript = GetComponent<TowerEnemyRangeCheck>();
         animShoot = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        if (towerBasicScript.GetIsPlaced())
+        if (towerBasicScript.GetIsPlaced() && towerRangeScript.GetEnemyInRange())
         {
             timeInterval += Time.deltaTime;
             if (timeInterval >= shootCooldown)
@@ -29,6 +31,10 @@ public class TowerShoot : MonoBehaviour
                 animShoot.SetTrigger("shoot");
             }
         }
+    }
+    private void Update()
+    { 
+
     }
 
     public void EventShoot()
