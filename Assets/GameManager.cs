@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,15 +18,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Vector2 topLeftPoint;
     [SerializeField] private Vector2 botRightPoint;
-    private Vector2[,] gridPoints = new Vector2[10, 4];
+    private Vector2[,] gridPoints = new Vector2[10, 5];
 
     private bool holdingTower = false;
+
+    private int basicResource = 0;
+    [SerializeField] private TextMeshProUGUI textBasicResourceCount;
     // Start is called before the first frame update
     void Start()
     {
         float x = topLeftPoint.x;
         float y = topLeftPoint.y;
-        for (int j = 0; j < 4; j++)
+        for (int j = 0; j < 5; j++)
         {
             for (int i = 0; i < 10; i++)
             {
@@ -35,7 +39,7 @@ public class GameManager : MonoBehaviour
                 x += 2;
             }
             x = topLeftPoint.x;
-            y -= 2;
+            y -= 1.5f;
         }
 
 
@@ -58,57 +62,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnClick()
-    {
-        Debug.Log("CLICK");
-    }
-
-    public void GeneratorOnClick()
+    public void OnClick(GameObject tower, GameObject tempTower)
     {
         if(temp == null)
         {
             holdingTower = true;
-            heldObject = generator;
-            tempHeldObject = tempGenerator;
-            temp = Instantiate(generator, transform.position, transform.rotation);
+            heldObject = tower;
+            tempHeldObject = tempTower;
+            temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), transform.rotation);
         }
         else
         {
-            holdingTower = false;
             Destroy(temp);
+            holdingTower = false;
         }
+    }
+
+    public void GeneratorOnClick()
+    {
+        OnClick(generator, tempGenerator);
         
     }
     public void AttackOnClick()
     {
-        if (temp == null)
-        {
-            holdingTower = true;
-            heldObject = attack;
-            tempHeldObject = tempAttack;
-            temp = Instantiate(attack, transform.position, transform.rotation);
-        }
-        else
-        {
-            holdingTower = false;
-            Destroy(temp);
-        }
+        OnClick(attack, tempAttack);
     }
 
     public void BlockOnClick()
     {
-        if (temp == null)
-        {
-            holdingTower = true;
-            heldObject = block;
-            tempHeldObject = tempBlock;
-            temp = Instantiate(block, transform.position, transform.rotation);
-        }
-        else
-        {
-            holdingTower = false;
-            Destroy(temp);
-        }
+        OnClick(block, tempBlock);
     }
 
     public bool GetHoldingTower()
@@ -138,5 +120,11 @@ public class GameManager : MonoBehaviour
     {
         holdingTower = false;
         Destroy(temp);
+    }
+
+    public void AddBasicResource(int add)
+    {
+        basicResource += add;
+        textBasicResourceCount.text = basicResource.ToString();
     }
 }

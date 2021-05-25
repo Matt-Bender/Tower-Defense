@@ -25,19 +25,20 @@ public class GridBox : MonoBehaviour
         {
             temp = Instantiate(gmScript.GetTempHeldTower(), new Vector3(transform.position.x, transform.position.y, -2), transform.rotation);
         }
-        Debug.Log("MOUSEOVER");
+        //Debug.Log("MOUSEOVER");
     }
     private void OnMouseExit()
     {
         Destroy(temp);
-        Debug.Log("MOUSENOTOVER");
+        //Debug.Log("MOUSENOTOVER");
     }
 
     private void OnMouseDown()
     {
         if (gmScript.GetHoldingTower() && !towerPlaced)
         {
-            Instantiate(gmScript.GetHeldTower(), transform.position, transform.rotation);
+            GameObject lastTowerPlaced = Instantiate(gmScript.GetHeldTower(), transform.position, transform.rotation);
+            lastTowerPlaced.GetComponent<TowerBasic>().SetIsPlaced(true);
             gmScript.TowerPlaced();
             towerPlaced = true;
         }
