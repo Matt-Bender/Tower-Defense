@@ -9,6 +9,8 @@ public class TowerBasic : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] private int resourceCost;
 
+    [SerializeField] private GridBox gridBoxScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +48,19 @@ public class TowerBasic : MonoBehaviour
     public int GetResourceCost()
     {
         return resourceCost;
+    }
+
+    //Gets the current gridbox the tower is placed on
+    public void GetGridBox(GridBox gridBox)
+    {
+        gridBoxScript = gridBox;
+    }
+    private void OnDestroy()
+    {
+        if(gridBoxScript != null)
+        {
+            gridBoxScript.SetTowerPlaced(false);
+        }
+        
     }
 }

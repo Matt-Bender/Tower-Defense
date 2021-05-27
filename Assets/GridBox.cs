@@ -43,7 +43,9 @@ public class GridBox : MonoBehaviour
         {
             gmScript.AddBasicResource(-gmScript.GetHeldTower().GetComponent<TowerBasic>().GetResourceCost());
             lastTowerPlaced = Instantiate(gmScript.GetHeldTower(), new Vector3(transform.position.x + 1f, transform.position.y + .75f, -2), gmScript.GetHeldTower().transform.rotation);
-            lastTowerPlaced.GetComponent<TowerBasic>().SetIsPlaced(true);
+            TowerBasic towerScript = lastTowerPlaced.GetComponent<TowerBasic>();
+            towerScript.SetIsPlaced(true);
+            towerScript.GetGridBox(GetComponent<GridBox>());
             gmScript.TowerPlaced();
             towerPlaced = true;
         }
@@ -63,7 +65,10 @@ public class GridBox : MonoBehaviour
                 
             }
         }
+    }
 
-
+    public void SetTowerPlaced(bool isPlaced)
+    {
+        towerPlaced = isPlaced;
     }
 }

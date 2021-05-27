@@ -12,9 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject generator;
     [SerializeField] private GameObject tempGenerator;
     [SerializeField] private Button buttonGenerator;
-    [SerializeField] private GameObject symbolGenerator;
-    [SerializeField] private float generatorCooldown;
-    private float genTimeInterval;
 
     [Header("Attack")]
     [SerializeField] private GameObject attack;
@@ -45,28 +42,17 @@ public class GameManager : MonoBehaviour
 
     private bool holdingTower = false;
 
-    private int basicResource = 5;
+    private int basicResource = 3;
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
+
+    private CooldownManager cooldownScript;
     // Start is called before the first frame update
     void Start()
     {
-        //float x = topLeftPoint.x;
-        //float y = topLeftPoint.y;
-        //for (int j = 0; j < 5; j++)
-        //{
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        gridPoints[i, j] = new Vector2(x, y);
-        //        //Debug.Log(gridPoints[i, j]);
-        //        //Instantiate(tempGenerator, gridPoints[i, j], Quaternion.identity);
-        //        x += 2;
-        //    }
-        //    x = topLeftPoint.x;
-        //    y -= 1.5f;
-        //}
-
+        //Adds 0 to show current resources at the beginning
         AddBasicResource(0);
 
+        cooldownScript = GetComponent<CooldownManager>();
     }
 
     // Update is called once per frame
@@ -83,19 +69,6 @@ public class GameManager : MonoBehaviour
             }
             
             //temp.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-        }
-    }
-    private void FixedUpdate()
-    {
-        if (!symbolGenerator.activeSelf)
-        {
-            genTimeInterval += Time.deltaTime;
-            if (genTimeInterval >= generatorCooldown)
-            {
-                genTimeInterval = 0;
-                buttonGenerator.interactable = true;
-                symbolGenerator.SetActive(true);
-            }
         }
     }
 
@@ -174,10 +147,6 @@ public class GameManager : MonoBehaviour
 
     private void Cooldown(GameObject tower)
     {
-        if(tower == generator)
-        {
-            buttonGenerator.interactable = false;
-            symbolGenerator.SetActive(false);
-        }
+        cooldownScript.CanBuyTower(tower, false);
     }
 }

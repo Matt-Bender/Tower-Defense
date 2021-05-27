@@ -130,5 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  hp: 5
+  hp: 3
   resourceCost: 2
