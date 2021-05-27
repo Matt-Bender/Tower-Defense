@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class EnemyBasic : MonoBehaviour
 {
+    Animator animEnemy;
     [SerializeField] private float movementSpeed;
+    //Enemy stops moving when attacking
+    private bool moving = true;
 
     private int currHP;
     [SerializeField] private int maxHP;
 
+    //Reference to the gameobject the enemy is currently attacking
+    private GameObject attackingTower;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        animEnemy = GetComponent<Animator>();
         currHP = maxHP;
+
     }
     private void FixedUpdate()
     {
-        transform.Translate(-transform.right * Time.deltaTime * movementSpeed, transform);
+        if (moving)
+        {
+            transform.Translate(-transform.right * Time.deltaTime * movementSpeed, transform);
+        }
+        
     }
     // Update is called once per frame
     void Update()
@@ -40,6 +54,54 @@ public class EnemyBasic : MonoBehaviour
             TakeDamage(1);
             Destroy(collision.gameObject);
         }
+        if (collision.CompareTag("Tower"))
+        {
+            //moving = false;
+            //attackingTower = collision.gameObject;
+            //animEnemy.SetTrigger("Attack");
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Tower"))
+        {
+            moving = true;
+        }
+    }
+
+    public void Attack()
+    {
+        attackingTower.GetComponent<TowerBasic>().TakeDamage(1);
+    }
+    //Called at end of attack animations
+    public void TriggerAttack()
+    {
+            Invoke("AnimAttack", .5f);
+    }
+    //Called .5 seconds after attack animation
+    //Either repeat or keep moving
+    private void AnimAttack()
+    {
+        if(attackingTower != null)
+        {
+            animEnemy.SetTrigger("Attack");
+        }
+        else
+        {
+            moving = true;
+        }
+
+    }
+
+    public void GetTower(GameObject tower)
+    {
+        Debug.Log("Tower Got");
+        if(tower != null)
+        {
+            attackingTower = tower;
+        }
+        moving = false;
+        animEnemy.SetTrigger("Attack");
     }
     #endregion
 }

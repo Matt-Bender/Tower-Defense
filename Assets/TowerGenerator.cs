@@ -46,6 +46,6 @@ public class TowerGenerator : MonoBehaviour
         {
             positionY += .5f;
         }
-        temp = Instantiate(basicResource, new Vector3(positionX, positionY, transform.position.x), transform.rotation);
+        temp = Instantiate(basicResource, new Vector3(positionX, positionY, -3), transform.rotation);
     }
 }

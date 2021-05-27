@@ -7,7 +7,8 @@ public class GridBox : MonoBehaviour
     GameManager gmScript;
 
     GameObject temp;
-    private bool towerPlaced = false;
+    [SerializeField] private bool towerPlaced = false;
+    GameObject lastTowerPlaced;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,9 @@ public class GridBox : MonoBehaviour
     void Update()
     {
         
+    }
+    private void FixedUpdate()
+    {
     }
     private void OnMouseEnter()
     {
@@ -37,10 +41,28 @@ public class GridBox : MonoBehaviour
     {
         if (gmScript.GetHoldingTower() && !towerPlaced)
         {
-            GameObject lastTowerPlaced = Instantiate(gmScript.GetHeldTower(), new Vector3(transform.position.x + 1f, transform.position.y + .75f, -2), gmScript.GetHeldTower().transform.rotation);
+            lastTowerPlaced = Instantiate(gmScript.GetHeldTower(), new Vector3(transform.position.x + 1f, transform.position.y + .75f, -2), gmScript.GetHeldTower().transform.rotation);
             lastTowerPlaced.GetComponent<TowerBasic>().SetIsPlaced(true);
             gmScript.TowerPlaced();
             towerPlaced = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (towerPlaced)
+        {
+            if (collision.CompareTag("Enemy"))
+            {
+                Debug.Log("Trigger Enemy");
+                if(lastTowerPlaced != null)
+                {
+                    collision.gameObject.GetComponent<EnemyBasic>().GetTower(lastTowerPlaced);
+                }
+                
+            }
+        }
+
+
     }
 }

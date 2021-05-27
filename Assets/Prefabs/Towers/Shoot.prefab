@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
+  hp: 5
 --- !u!114 &9092443402469271888
 MonoBehaviour:
   m_ObjectHideFlags: 0
