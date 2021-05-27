@@ -7,10 +7,8 @@ public class TowerBasic : MonoBehaviour
     //Will contain basic logic for each tower hp, and checks if placed
     [SerializeField] private bool isPlaced = false;
     [SerializeField] private int hp;
+    [SerializeField] private int resourceCost;
 
-    private void Awake()
-    {
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -43,5 +41,10 @@ public class TowerBasic : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public int GetResourceCost()
+    {
+        return resourceCost;
     }
 }

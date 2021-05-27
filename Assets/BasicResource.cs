@@ -18,7 +18,7 @@ public class BasicResource : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        gmScript.AddBasicResource(5);
+        gmScript.AddBasicResource(1);
         Destroy(gameObject);
     }
 }

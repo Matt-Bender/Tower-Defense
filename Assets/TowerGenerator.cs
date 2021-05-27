@@ -12,6 +12,8 @@ public class TowerGenerator : MonoBehaviour
 
     [SerializeField] private GameObject basicResource;
     private GameObject temp;
+
+    private bool firstProduce = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +27,9 @@ public class TowerGenerator : MonoBehaviour
         if (towerBasicScript.GetIsPlaced())
         {
             timeInterval += Time.deltaTime;
-            if(timeInterval >= produceCooldown)
+            if(timeInterval >= produceCooldown || firstProduce)
             {
+                firstProduce = false;
                 timeInterval = 0;
                 animGen.SetTrigger("produce");
                 Debug.Log("Resources Gained");

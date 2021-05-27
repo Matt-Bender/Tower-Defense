@@ -1,30 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("TOWERS", order = 0)]
+
+    [Header("Generator", order = 1)]
     [SerializeField] private GameObject generator;
     [SerializeField] private GameObject tempGenerator;
+    [SerializeField] private Button buttonGenerator;
+    [SerializeField] private GameObject symbolGenerator;
+    [SerializeField] private float generatorCooldown;
+    private float genTimeInterval;
+
+    [Header("Attack")]
     [SerializeField] private GameObject attack;
     [SerializeField] private GameObject tempAttack;
+    [SerializeField] private Button buttonAttack;
+    private float attackCooldown;
+
+    [Header("Block")]
     [SerializeField] private GameObject block;
     [SerializeField] private GameObject tempBlock;
+    [SerializeField] private Button buttonBlock;
+    private float blockCooldown;
+
+    [Header("Shoot")]
     [SerializeField] private GameObject shoot;
     [SerializeField] private GameObject tempShoot;
+    [SerializeField] private Button buttonShoot;
+    private float shootCooldown;
 
     private GameObject tempHeldObject;
     private GameObject heldObject;
     private GameObject temp;
 
+    [Header("Grid")]
     [SerializeField] private Vector2 topLeftPoint;
     [SerializeField] private Vector2 botRightPoint;
     private Vector2[,] gridPoints = new Vector2[10, 5];
 
     private bool holdingTower = false;
 
-    private int basicResource = 0;
+    private int basicResource = 5;
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
     // Start is called before the first frame update
     void Start()
@@ -44,6 +65,7 @@ public class GameManager : MonoBehaviour
         //    y -= 1.5f;
         //}
 
+        AddBasicResource(0);
 
     }
 
@@ -63,10 +85,23 @@ public class GameManager : MonoBehaviour
             //temp.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         }
     }
+    private void FixedUpdate()
+    {
+        if (!symbolGenerator.activeSelf)
+        {
+            genTimeInterval += Time.deltaTime;
+            if (genTimeInterval >= generatorCooldown)
+            {
+                genTimeInterval = 0;
+                buttonGenerator.interactable = true;
+                symbolGenerator.SetActive(true);
+            }
+        }
+    }
 
     public void OnClick(GameObject tower, GameObject tempTower)
     {
-        if(temp == null)
+        if(temp == null && tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource)
         {
             holdingTower = true;
             heldObject = tower;
@@ -125,13 +160,24 @@ public class GameManager : MonoBehaviour
 
     public void TowerPlaced()
     {
+        Cooldown(heldObject);
         holdingTower = false;
         Destroy(temp);
     }
+
 
     public void AddBasicResource(int add)
     {
         basicResource += add;
         textBasicResourceCount.text = basicResource.ToString();
+    }
+
+    private void Cooldown(GameObject tower)
+    {
+        if(tower == generator)
+        {
+            buttonGenerator.interactable = false;
+            symbolGenerator.SetActive(false);
+        }
     }
 }

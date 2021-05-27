@@ -9,10 +9,10 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < spawningLocations.Length; i++)
-        {
-            Instantiate(enemies[0], spawningLocations[i], Quaternion.identity);
-        }
+        //for(int i = 0; i < spawningLocations.Length; i++)
+        //{
+        //    Instantiate(enemies[0], spawningLocations[i], Quaternion.identity);
+        //}
     }
 
     // Update is called once per frame
