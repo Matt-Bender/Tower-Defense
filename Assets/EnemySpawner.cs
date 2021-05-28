@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
             if(timeBetweenEnemySpawn == 5)
             {
                 isWave = true;
-                for(int i = 0; i < 10; i++)
+                for(int i = 0; i < 5; i++)
                 {
                     Invoke("SpawnEnemy", i);
                 }

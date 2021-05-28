@@ -18,7 +18,8 @@ public class TowerGenerator : MonoBehaviour
     void Start()
     {
         towerBasicScript = GetComponent<TowerBasic>();
-        animGen = GetComponent<Animator>();
+        //animGen = GetComponent<Animator>();
+        animGen = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
