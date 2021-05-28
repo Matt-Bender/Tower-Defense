@@ -95,6 +95,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlaced: 0
-  hp: 0
-  resourceCost: 0
-  gridBoxScript: {fileID: 0}

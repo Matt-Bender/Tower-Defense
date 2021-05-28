@@ -120,7 +120,6 @@ MonoBehaviour:
   isPlaced: 0
   hp: 3
   resourceCost: 5
-  gridBoxScript: {fileID: 0}
 --- !u!114 &9092443402469271888
 MonoBehaviour:
   m_ObjectHideFlags: 0

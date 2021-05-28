@@ -132,4 +132,3 @@ MonoBehaviour:
   isPlaced: 0
   hp: 3
   resourceCost: 2
-  gridBoxScript: {fileID: 0}
