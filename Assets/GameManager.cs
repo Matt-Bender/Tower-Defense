@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     private bool holdingTower = false;
 
-    private int basicResource = 3;
+    private int basicResource = 999;
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
 
     private CooldownManager cooldownScript;

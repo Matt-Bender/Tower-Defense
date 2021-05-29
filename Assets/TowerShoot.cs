@@ -41,6 +41,6 @@ public class TowerShoot : MonoBehaviour
     {
         GameObject temp = Instantiate(bullet, bulletSpawnPoint.position, bullet.transform.rotation);
         Rigidbody2D tempRB = temp.GetComponent<Rigidbody2D>();
-        tempRB.velocity = -transform.up * 10;
+        tempRB.velocity = new Vector2(1, 0) * 10;
     }
 }
