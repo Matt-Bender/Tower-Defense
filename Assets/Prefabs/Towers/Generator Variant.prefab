@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7101269926264437737, guid: e7faa71ae9758004c92c8c2aa957401c, type: 3}
       propertyPath: m_Name
-      value: Generator
+      value: Generator Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7101269926264437741, guid: e7faa71ae9758004c92c8c2aa957401c, type: 3}
       propertyPath: m_RootOrder
