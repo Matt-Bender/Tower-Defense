@@ -71,7 +71,11 @@ public class EnemyBasic : MonoBehaviour
 
     public void Attack()
     {
-        attackingTower.GetComponent<TowerBasic>().TakeDamage(1);
+        if(attackingTower != null)
+        {
+            attackingTower.GetComponent<TowerBasic>().TakeDamage(1);
+        }
+        
     }
     //Called at end of attack animations
     public void TriggerAttack()
@@ -89,13 +93,15 @@ public class EnemyBasic : MonoBehaviour
         else
         {
             moving = true;
+            animEnemy.SetBool("isAttacking", false);
         }
 
     }
 
     public void GetTower(GameObject tower)
     {
-        Debug.Log("Tower Got");
+        animEnemy.SetBool("isAttacking", true);
+        //Debug.Log("Tower Got");
         if(tower != null)
         {
             attackingTower = tower;
