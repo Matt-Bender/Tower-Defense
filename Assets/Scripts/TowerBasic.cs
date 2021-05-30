@@ -11,10 +11,12 @@ public class TowerBasic : MonoBehaviour
 
     [SerializeField] private GridBox gridBoxScript;
 
+    TowerBreak towerBreakScript;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        towerBreakScript = GetComponent<TowerBreak>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,15 @@ public class TowerBasic : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(towerBreakScript != null)
+        {
+            towerBreakScript.BreakTower();
+        }
+    }
+
+    public int GetHP()
+    {
+        return hp;
     }
 
     public int GetResourceCost()
@@ -55,6 +66,7 @@ public class TowerBasic : MonoBehaviour
     {
         gridBoxScript = gridBox;
     }
+
     private void OnDestroy()
     {
         if(gridBoxScript != null)
