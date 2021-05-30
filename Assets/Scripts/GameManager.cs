@@ -67,8 +67,6 @@ public class GameManager : MonoBehaviour
             {
                 temp.transform.position = new Vector3(hit.point.x, hit.point.y, -1);
             }
-            
-            //temp.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         }
     }
 
