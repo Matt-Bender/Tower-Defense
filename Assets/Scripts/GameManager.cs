@@ -46,10 +46,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Resources")]
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
-    private int basicResource = 3;
+    //Default 3
+    private int basicResource = 999;
 
     [SerializeField] private GameObject scrap;
-    private int scrapResource = 0;
+    //Default 0
+    private int scrapResource = 999;
     [SerializeField] private TextMeshProUGUI textScrapResourceCount;
 
     private CooldownManager cooldownScript;

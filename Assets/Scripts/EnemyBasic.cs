@@ -74,6 +74,15 @@ public class EnemyBasic : MonoBehaviour
             //attackingTower = collision.gameObject;
             //animEnemy.SetTrigger("Attack");
         }
+        //When entering gridbox, check for tower in space if so get tower and call attack function GetTower()
+        if (collision.CompareTag("GridBox"))
+        {
+            if (collision.GetComponent<GridBox>().CheckTowerForEnemy() != null)
+            {
+                GetTower(collision.GetComponent<GridBox>().CheckTowerForEnemy());
+            }
+            Debug.Log("Entering Square");
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -112,6 +121,7 @@ public class EnemyBasic : MonoBehaviour
 
     }
 
+    //Causes enemy to attack
     public void GetTower(GameObject tower)
     {
         animEnemy.SetBool("isAttacking", true);

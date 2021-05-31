@@ -67,22 +67,34 @@ public class GridBox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (towerPlaced)
-        {
-            if (collision.CompareTag("Enemy"))
-            {
-                Debug.Log("Trigger Enemy");
-                if(lastTowerPlaced != null)
-                {
-                    collision.gameObject.GetComponent<EnemyBasic>().GetTower(lastTowerPlaced);
-                }
+        //if (towerPlaced)
+        //{
+        //    if (collision.CompareTag("Enemy"))
+        //    {
+        //        Debug.Log("Trigger Enemy");
+        //        if(lastTowerPlaced != null)
+        //        {
+        //            collision.gameObject.GetComponent<EnemyBasic>().GetTower(lastTowerPlaced);
+        //        }
                 
-            }
-        }
+        //    }
+        //}
     }
 
     public void SetTowerPlaced(bool isPlaced)
     {
         towerPlaced = isPlaced;
+    }
+
+    public GameObject CheckTowerForEnemy()
+    {
+        if (towerPlaced)
+        {
+            return lastTowerPlaced;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
