@@ -42,8 +42,15 @@ public class GameManager : MonoBehaviour
 
     private bool holdingTower = false;
 
-    private int basicResource = 999;
+
+
+    [Header("Resources")]
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
+    private int basicResource = 3;
+
+    [SerializeField] private GameObject scrap;
+    private int scrapResource = 0;
+    [SerializeField] private TextMeshProUGUI textScrapResourceCount;
 
     private CooldownManager cooldownScript;
     // Start is called before the first frame update
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         //Adds 0 to show current resources at the beginning
         AddBasicResource(0);
+        AddScrapResource(0);
 
         cooldownScript = GetComponent<CooldownManager>();
     }
@@ -69,20 +77,21 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    //On Click tower to choose which you will build
     public void OnClick(GameObject tower, GameObject tempTower)
     {
-        if(temp == null && tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource)
+        //If currently holding tower will destroy and replace with most recent clicked on tower...
+        if(temp != null)
+        {
+            Destroy(temp);
+        }
+        //Only if you have enough resources otherwise will just keep your currently selected tower
+        if(tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource && tower.GetComponent<TowerBasic>().GetScrapCost() <= scrapResource)
         {
             holdingTower = true;
             heldObject = tower;
             tempHeldObject = tempTower;
             temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), tower.transform.rotation);
-        }
-        else
-        {
-            Destroy(temp);
-            holdingTower = false;
         }
     }
 
@@ -131,16 +140,28 @@ public class GameManager : MonoBehaviour
 
     public void TowerPlaced()
     {
+        //Check if 
         Cooldown(heldObject);
         holdingTower = false;
         Destroy(temp);
     }
 
-
+    //Changes / updates (in text on screen) basic resource
     public void AddBasicResource(int add)
     {
         basicResource += add;
         textBasicResourceCount.text = basicResource.ToString();
+    }
+    //Changes / updates(in text on screen) scrap resource
+    public void AddScrapResource(int add)
+    {
+        scrapResource += add;
+        textScrapResourceCount.text = scrapResource.ToString();
+    }
+
+    public GameObject GetScrap()
+    {
+        return scrap;
     }
 
     private void Cooldown(GameObject tower)

@@ -8,15 +8,20 @@ public class TowerBasic : MonoBehaviour
     [SerializeField] private bool isPlaced = false;
     [SerializeField] private int hp;
     [SerializeField] private int resourceCost;
+    [SerializeField] private int scrapCost;
+
+    [SerializeField] private int scrapDrop = 1;
 
     [SerializeField] private GridBox gridBoxScript;
 
     TowerBreak towerBreakScript;
+    GameManager gmScript;
 
     // Start is called before the first frame update
     void Start()
     {
         towerBreakScript = GetComponent<TowerBreak>();
+        gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -61,6 +66,11 @@ public class TowerBasic : MonoBehaviour
         return resourceCost;
     }
 
+    public int GetScrapCost()
+    {
+        return scrapCost;
+    }
+
     //Gets the current gridbox the tower is placed on
     public void GetGridBox(GridBox gridBox)
     {
@@ -69,6 +79,15 @@ public class TowerBasic : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (isPlaced && UnityEditor.EditorApplication.isPlaying == true)
+        {
+            for(int i = 0; i < scrapDrop; i++)
+            {
+                Instantiate(gmScript.GetScrap(), new Vector3(transform.position.x + (i * .5f), transform.position.y, transform.position.z), transform.rotation);
+            }
+            
+        }
+        
         if(gridBoxScript != null)
         {
             gridBoxScript.SetTowerPlaced(false);

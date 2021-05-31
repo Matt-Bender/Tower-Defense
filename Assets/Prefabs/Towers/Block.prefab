@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7951730160528063362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: -1697650534175115097}
   - component: {fileID: 5342019276551495945}
   - component: {fileID: 1959615207173239272}
-  - component: {fileID: 8184651257360282843}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -141,6 +140,8 @@ MonoBehaviour:
   isPlaced: 0
   hp: 10
   resourceCost: 4
+  scrapCost: 0
+  scrapDrop: 2
   gridBoxScript: {fileID: 0}
 --- !u!212 &5342019276551495945
 SpriteRenderer:
@@ -212,16 +213,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8184651257360282843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7462608132174979242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c435edbc889e643a5631d85c9ab808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteMask: {fileID: 5064181767821053624}

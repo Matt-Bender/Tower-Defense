@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Vector3[] spawningLocations;
     [SerializeField] private GameObject[] enemies;
 
-    private float timeBetweenEnemySpawn = 30;
+    private float timeBetweenEnemySpawn = 45;
     private float startingTimeBetweenEnemySpawn;
     private float TimeInterval;
     private bool isWave = false;
@@ -37,11 +37,11 @@ public class EnemySpawner : MonoBehaviour
             timeBetweenEnemySpawn -= 5;
             if(timeBetweenEnemySpawn == 5)
             {
-                isWave = true;
-                for(int i = 0; i < 5; i++)
-                {
-                    Invoke("SpawnEnemy", i);
-                }
+                //isWave = true;
+                //for(int i = 0; i < 5; i++)
+                //{
+                //    Invoke("SpawnEnemy", i);
+                //}
                 timeBetweenEnemySpawn = 30;
             }
             SpawnEnemy();
@@ -52,5 +52,6 @@ public class EnemySpawner : MonoBehaviour
     {
         int randNum = Random.Range(0, 5);
         Instantiate(enemies[0], spawningLocations[randNum], Quaternion.identity);
+        Debug.Log("Enemy Spawned");
     }
 }

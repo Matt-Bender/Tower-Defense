@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed668c4ce62118439dc94e5600c5d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  produceCooldown: 10
+  produceCooldown: 15
   basicResource: {fileID: 7905297416979884558, guid: 19537a67e2d154c4db3bf0d9880146e5, type: 3}
 --- !u!114 &4488113794090420513
 MonoBehaviour:
@@ -178,6 +178,8 @@ MonoBehaviour:
   isPlaced: 0
   hp: 3
   resourceCost: 2
+  scrapCost: 0
+  scrapDrop: 1
   gridBoxScript: {fileID: 0}
 --- !u!212 &2788677902799522226
 SpriteRenderer:

@@ -15,6 +15,8 @@ public class EnemyBasic : MonoBehaviour
     //Reference to the gameobject the enemy is currently attacking
     private GameObject attackingTower;
 
+    [SerializeField] private EnemyBreak enemyBreakScript;
+
 
 
     // Start is called before the first frame update
@@ -23,9 +25,12 @@ public class EnemyBasic : MonoBehaviour
         animEnemy = GetComponent<Animator>();
         currHP = maxHP;
 
+        enemyBreakScript = GetComponent<EnemyBreak>();
+
     }
     private void FixedUpdate()
     {
+        //base movement speed towards left side
         if (moving)
         {
             transform.Translate(-transform.right * Time.deltaTime * movementSpeed, transform);
@@ -46,6 +51,15 @@ public class EnemyBasic : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(enemyBreakScript != null)
+        {
+            enemyBreakScript.BreakTower();
+        }
+    }
+
+    public int GetHP()
+    {
+        return currHP;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -80,7 +94,7 @@ public class EnemyBasic : MonoBehaviour
     //Called at end of attack animations
     public void TriggerAttack()
     {
-            Invoke("AnimAttack", .5f);
+        Invoke("AnimAttack", .5f);
     }
     //Called .5 seconds after attack animation
     //Either repeat or keep moving
