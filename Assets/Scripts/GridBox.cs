@@ -50,7 +50,8 @@ public class GridBox : MonoBehaviour
 
     private void PlaceTower()
     {
-        if (gmScript.GetHoldingTower() && !towerPlaced)
+        //Don't place down tower if it doesn't have towerbasic script (is hammer)
+        if (gmScript.GetHoldingTower() && !towerPlaced && gmScript.GetHeldTower().GetComponent<TowerBasic>() != null)
         {
             //Remove resource cost from pool
             gmScript.AddBasicResource(-gmScript.GetHeldTower().GetComponent<TowerBasic>().GetResourceCost());
@@ -63,6 +64,14 @@ public class GridBox : MonoBehaviour
             towerScript.GetGridBox(GetComponent<GridBox>());
             gmScript.TowerPlaced();
             towerPlaced = true;
+
+        }
+        else if (towerPlaced && gmScript.GetHeldTower().GetComponent<TowerBasic>() == null)
+        {
+            //Check if its hammer
+            lastTowerPlaced.GetComponent<TowerBasic>().SetHammerDestroyed(true);
+            Destroy(lastTowerPlaced);
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

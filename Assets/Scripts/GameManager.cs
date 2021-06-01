@@ -13,12 +13,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tempGenerator;
     [SerializeField] private Button buttonGenerator;
 
-    [Header("Attack")]
-    [SerializeField] private GameObject attack;
-    [SerializeField] private GameObject tempAttack;
-    [SerializeField] private Button buttonAttack;
-    private float attackCooldown;
-
     [Header("Block")]
     [SerializeField] private GameObject block;
     [SerializeField] private GameObject tempBlock;
@@ -30,6 +24,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject tempShoot;
     [SerializeField] private Button buttonShoot;
     private float shootCooldown;
+
+    [Header("Hammer (Used to destroy towers)")]
+    [SerializeField] private GameObject hammer;
+    [SerializeField] private GameObject tempHammer;
+    [SerializeField] private Button buttonHammer;
 
     private GameObject tempHeldObject;
     private GameObject heldObject;
@@ -88,13 +87,25 @@ public class GameManager : MonoBehaviour
             Destroy(temp);
         }
         //Only if you have enough resources otherwise will just keep your currently selected tower
-        if(tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource && tower.GetComponent<TowerBasic>().GetScrapCost() <= scrapResource)
+        if(tower.GetComponent<TowerBasic>() != null)
+        {
+            if (tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource && tower.GetComponent<TowerBasic>().GetScrapCost() <= scrapResource)
+            {
+                holdingTower = true;
+                heldObject = tower;
+                tempHeldObject = tempTower;
+                temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), tower.transform.rotation);
+            }
+        }
+        else
         {
             holdingTower = true;
             heldObject = tower;
             tempHeldObject = tempTower;
             temp = Instantiate(tower, new Vector3(transform.position.x, transform.position.y, 5), tower.transform.rotation);
         }
+
+
     }
 
     public void GeneratorOnClick()
@@ -102,9 +113,9 @@ public class GameManager : MonoBehaviour
         OnClick(generator, tempGenerator);
         
     }
-    public void AttackOnClick()
+    public void HammerOnClick()
     {
-        OnClick(attack, tempAttack);
+        OnClick(hammer, tempHammer);
     }
 
     public void BlockOnClick()
@@ -138,6 +149,11 @@ public class GameManager : MonoBehaviour
             return heldObject;
         }
         return null;
+    }
+
+    public void SetHeldTower(GameObject tempTower)
+    {
+        heldObject = tempTower;
     }
 
     public void TowerPlaced()

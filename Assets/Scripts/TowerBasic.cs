@@ -17,6 +17,9 @@ public class TowerBasic : MonoBehaviour
     TowerBreak towerBreakScript;
     GameManager gmScript;
 
+    //Used to prevent spawning scrap when destroying towers with hammer
+    private bool hammerDestroyed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,14 +80,22 @@ public class TowerBasic : MonoBehaviour
         gridBoxScript = gridBox;
     }
 
+    public void SetHammerDestroyed(bool setHam)
+    {
+        hammerDestroyed = setHam;
+    }
     private void OnDestroy()
     {
         if (isPlaced && UnityEditor.EditorApplication.isPlaying == true)
         {
-            for(int i = 0; i < scrapDrop; i++)
+            if (!hammerDestroyed)
             {
-                Instantiate(gmScript.GetScrap(), new Vector3(transform.position.x + (i * .5f), transform.position.y, transform.position.z), transform.rotation);
+                for (int i = 0; i < scrapDrop; i++)
+                {
+                    Instantiate(gmScript.GetScrap(), new Vector3(transform.position.x + (i * .5f), transform.position.y, transform.position.z), transform.rotation);
+                }
             }
+
             
         }
         

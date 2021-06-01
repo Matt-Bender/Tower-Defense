@@ -6,12 +6,12 @@ public class BuildEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject robot;
     //will set to 120
-    private int timeBetweenBuilds = 120;
+    private int timeBetweenBuilds = 150;
     private float TimeInterval;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 2;
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class BuildEnemy : MonoBehaviour
         if (TimeInterval >= timeBetweenBuilds)
         {
             TimeInterval = 0;
-            timeBetweenBuilds -= 5;
+            timeBetweenBuilds -= 80;
             if (timeBetweenBuilds <= 5)
             {
                 timeBetweenBuilds = 15;
