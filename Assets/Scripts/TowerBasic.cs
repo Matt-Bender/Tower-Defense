@@ -92,7 +92,7 @@ public class TowerBasic : MonoBehaviour
             {
                 for (int i = 0; i < scrapDrop; i++)
                 {
-                    Instantiate(gmScript.GetScrap(), new Vector3(transform.position.x + (i * .5f), transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(gmScript.GetScrap(), new Vector3(transform.position.x + (i * .5f), transform.position.y, -3), transform.rotation);
                 }
             }
 

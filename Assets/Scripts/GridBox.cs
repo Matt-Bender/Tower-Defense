@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridBox : MonoBehaviour
 {
     GameManager gmScript;
+    TutorialManager tutorialScript;
 
     GameObject temp;
     [SerializeField] private bool towerPlaced = false;
@@ -13,6 +14,7 @@ public class GridBox : MonoBehaviour
     void Start()
     {
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+        tutorialScript = GameObject.Find("GameManager").GetComponent<TutorialManager>();
     }
 
     // Update is called once per frame
@@ -72,6 +74,11 @@ public class GridBox : MonoBehaviour
             lastTowerPlaced.GetComponent<TowerBasic>().SetHammerDestroyed(true);
             Destroy(lastTowerPlaced);
             
+        }
+
+        if(tutorialScript != null)
+        {
+            tutorialScript.GetObjectPlaced(lastTowerPlaced);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

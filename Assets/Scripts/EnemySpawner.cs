@@ -29,23 +29,27 @@ public class EnemySpawner : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
-        TimeInterval += Time.deltaTime;
-        if (TimeInterval >= timeBetweenEnemySpawn)
+        //Don't spawn enemies during tutorial
+        if(GameObject.Find("GameManager").GetComponent<TutorialManager>() == null)
         {
-            TimeInterval = 0;
-            timeBetweenEnemySpawn -= 5;
-            if(timeBetweenEnemySpawn == 5)
+            TimeInterval += Time.deltaTime;
+            if (TimeInterval >= timeBetweenEnemySpawn)
             {
-                //isWave = true;
-                //for(int i = 0; i < 5; i++)
-                //{
-                //    Invoke("SpawnEnemy", i);
-                //}
-                timeBetweenEnemySpawn = 30;
+                TimeInterval = 0;
+                timeBetweenEnemySpawn -= 5;
+                if (timeBetweenEnemySpawn == 5)
+                {
+                    //isWave = true;
+                    //for(int i = 0; i < 5; i++)
+                    //{
+                    //    Invoke("SpawnEnemy", i);
+                    //}
+                    timeBetweenEnemySpawn = 30;
+                }
+                SpawnEnemy();
             }
-            SpawnEnemy();
         }
+
     }
 
     private void SpawnEnemy()

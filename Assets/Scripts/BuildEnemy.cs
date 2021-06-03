@@ -11,7 +11,7 @@ public class BuildEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 2;
+
     }
 
     // Update is called once per frame
@@ -21,22 +21,24 @@ public class BuildEnemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        TimeInterval += Time.deltaTime;
-        if (TimeInterval >= timeBetweenBuilds)
+        //Don't spawn enemies during tutorial
+        if (GameObject.Find("GameManager").GetComponent<TutorialManager>() == null)
         {
-            TimeInterval = 0;
-            timeBetweenBuilds -= 80;
-            if (timeBetweenBuilds <= 5)
+            TimeInterval += Time.deltaTime;
+            if (TimeInterval >= timeBetweenBuilds)
             {
-                timeBetweenBuilds = 15;
+                TimeInterval = 0;
+                timeBetweenBuilds -= 80;
+                if (timeBetweenBuilds <= 5)
+                {
+                    timeBetweenBuilds = 15;
+                }
+                BuildRobot();
             }
-            
-
-
-            BuildRobot();
         }
+
     }
-    private void BuildRobot()
+    public void BuildRobot()
     {
         Debug.Log("Robot Built");
         Instantiate(robot, new Vector3(transform.position.x, transform.position.y + .25f, -3), transform.rotation);

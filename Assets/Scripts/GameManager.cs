@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
     [Header("Resources")]
     [SerializeField] private TextMeshProUGUI textBasicResourceCount;
     //Default 3
-    private int basicResource = 999;
+    private int basicResource = 3;
 
     [SerializeField] private GameObject scrap;
     //Default 0
-    private int scrapResource = 999;
+    private int scrapResource = 1;
     [SerializeField] private TextMeshProUGUI textScrapResourceCount;
 
     private CooldownManager cooldownScript;
@@ -170,11 +170,19 @@ public class GameManager : MonoBehaviour
         basicResource += add;
         textBasicResourceCount.text = basicResource.ToString();
     }
+    public int GetBasicResource()
+    {
+        return basicResource;
+    }
     //Changes / updates(in text on screen) scrap resource
     public void AddScrapResource(int add)
     {
         scrapResource += add;
         textScrapResourceCount.text = scrapResource.ToString();
+    }
+    public int GetScrapResource()
+    {
+        return scrapResource;
     }
 
     public GameObject GetScrap()
