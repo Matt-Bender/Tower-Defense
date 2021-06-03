@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
     [SerializeField] private int currentLevel = 1;
     private int numRobotBuilders;
     [SerializeField] private GameObject[] robotBuilder;
@@ -57,5 +59,10 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("You Win");
         }
+    }
+
+    public void GoMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 }

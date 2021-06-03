@@ -34,6 +34,11 @@ public class EnemyBasic : MonoBehaviour
         if (moving)
         {
             transform.Translate(-transform.right * Time.deltaTime * movementSpeed, transform);
+            if(transform.position.x <= -10)
+            {
+                GameObject.Find("GameManager").GetComponent<GameManager>().LoseLife();
+                Destroy(gameObject);
+            }
         }
         
     }

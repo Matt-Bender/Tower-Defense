@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textScrapResourceCount;
 
     private CooldownManager cooldownScript;
+    private LifeManager lifeScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         AddScrapResource(0);
 
         cooldownScript = GetComponent<CooldownManager>();
+        lifeScript = GetComponent<LifeManager>();
 
     }
 
@@ -209,5 +211,10 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void LoseLife()
+    {
+        lifeScript.LoseHeart();
     }
 }
