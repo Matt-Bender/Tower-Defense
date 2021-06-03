@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         AddScrapResource(0);
 
         cooldownScript = GetComponent<CooldownManager>();
+
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
         //Only if you have enough resources otherwise will just keep your currently selected tower
         if(tower.GetComponent<TowerBasic>() != null)
         {
-            if (tower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource && tower.GetComponent<TowerBasic>().GetScrapCost() <= scrapResource)
+            if (CanPurchaseTower(tower))
             {
                 holdingTower = true;
                 heldObject = tower;
@@ -159,7 +160,10 @@ public class GameManager : MonoBehaviour
     public void TowerPlaced()
     {
         //Check if 
-        Cooldown(heldObject);
+        if(heldObject.GetComponent<TowerBasic>() != null)
+        {
+            Cooldown(heldObject);
+        }
         holdingTower = false;
         Destroy(temp);
     }
@@ -193,5 +197,17 @@ public class GameManager : MonoBehaviour
     private void Cooldown(GameObject tower)
     {
         cooldownScript.CanBuyTower(tower, false);
+    }
+
+    public bool CanPurchaseTower(GameObject inputTower)
+    {
+        if(inputTower.GetComponent<TowerBasic>().GetResourceCost() <= basicResource && inputTower.GetComponent<TowerBasic>().GetScrapCost() <= scrapResource)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

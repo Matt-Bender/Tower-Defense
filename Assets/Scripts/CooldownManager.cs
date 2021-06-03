@@ -11,32 +11,44 @@ public class CooldownManager : MonoBehaviour
     //Timeintervals keeps track of current time that has passed for each cooldown
     [SerializeField] private float[] TimeInterval;
     [SerializeField] private float[] Cooldown;
+
+    GameManager gmScript;
     
     // Start is called before the first frame update
     void Start()
     {
         TimeInterval = new float[towers.Length];
+        gmScript = GetComponent<GameManager>();
+
+        for(int i = 0; i < towers.Length; i++)
+        {
+            CanBuyTower(towers[i], false);
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void FixedUpdate()
-    {
-        for(int i = 0; i < towers.Length; i++)
+        for (int i = 0; i < towers.Length; i++)
         {
             if (!towerSymbol[i].activeSelf)
             {
-                TimeInterval[i] += Time.deltaTime;
-                if(TimeInterval[i] >= Cooldown[i])
+                if(TimeInterval[i] < Cooldown[i])
+                {
+                    TimeInterval[i] += Time.deltaTime;
+                }
+                if (TimeInterval[i] >= Cooldown[i] && gmScript.CanPurchaseTower(towers[i]))
                 {
                     TimeInterval[i] = 0;
                     CanBuyTower(towers[i], true);
                 }
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        
         //if (!symbolGenerator.activeSelf)
         //{
         //    genTimeInterval += Time.deltaTime;

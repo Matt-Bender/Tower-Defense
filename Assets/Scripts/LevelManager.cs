@@ -42,4 +42,20 @@ public class LevelManager : MonoBehaviour
     {
         
     }
+    private void FixedUpdate()
+    {
+        bool activeBuilders = false;
+        for (int i = 0; i < numRobotBuilders; i++)
+        {
+            if(robotBuilder[i] != null)
+            {
+                activeBuilders = true;
+                break;
+            }
+        }
+        if(activeBuilders == false)
+        {
+            Debug.Log("You Win");
+        }
+    }
 }

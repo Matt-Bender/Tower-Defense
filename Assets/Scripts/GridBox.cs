@@ -73,6 +73,7 @@ public class GridBox : MonoBehaviour
             //Check if its hammer
             lastTowerPlaced.GetComponent<TowerBasic>().SetHammerDestroyed(true);
             Destroy(lastTowerPlaced);
+            gmScript.TowerPlaced();
             
         }
 

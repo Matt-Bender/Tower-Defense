@@ -8,6 +8,7 @@ public class BuildEnemy : MonoBehaviour
     //will set to 120
     private int timeBetweenBuilds = 150;
     private float TimeInterval;
+    private GameObject tempRobot;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,18 @@ public class BuildEnemy : MonoBehaviour
     public void BuildRobot()
     {
         Debug.Log("Robot Built");
-        Instantiate(robot, new Vector3(transform.position.x, transform.position.y + .25f, -3), transform.rotation);
+        tempRobot = Instantiate(robot, new Vector3(transform.position.x, transform.position.y + .25f, -3), transform.rotation);
+    }
+
+    public GameObject GetTempRobot()
+    {
+        if(tempRobot != null)
+        {
+            return tempRobot;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

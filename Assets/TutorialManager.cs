@@ -15,6 +15,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject[] towers;
     [SerializeField] private GameObject builder;
 
+    private GameObject tutorialRobot;
+    [SerializeField] private GameObject tutorialRock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +68,7 @@ public class TutorialManager : MonoBehaviour
         tutorialSection++;
         if(tutorialSection == 1)
         {
-            tutorialText.text = "Left Click to select the generator tower";
+            tutorialText.text = "Wait for cooldown, then left click to select the generator tower";
             arrow.transform.position = new Vector3(-9.5f, 1.6f, -4);
         }
         else if (tutorialSection == 2)
@@ -80,7 +83,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if (tutorialSection == 4)
         {
-            tutorialText.text = "Place down a couple more generators and continue to collect these resources.";
+            tutorialText.text = "Place down a couple more generators as you continue to collect these resources.";
             arrow.transform.position = new Vector3(-7, -.25f, -4);
             arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
         }
@@ -119,6 +122,11 @@ public class TutorialManager : MonoBehaviour
             tutorialText.text = "After destroying the robot the cannon will continue to destroy anything in its path. Destroying the robot builders is the goal.";
             arrow.transform.position = new Vector3(8.5f, 0f, -4);
             ContinueTime();
+        }
+        else if(tutorialSection == 11)
+        {
+            tutorialText.text = "You can also use the hammer to get rid of towers. Although be warned you lose the full tower cost";
+            arrow.transform.position = new Vector3(-3.5f, 2f, -4);
             Destroy(gameObject.GetComponent<TutorialManager>());
         }
     }
@@ -184,6 +192,13 @@ public class TutorialManager : MonoBehaviour
         else if (tutorialSection == 9)
         {
             if (!gmScript.GetHoldingTower())
+            {
+                Tutorial();
+            }
+        }
+        else if(tutorialSection == 10)
+        {
+            if(tutorialRock == null)
             {
                 Tutorial();
             }
