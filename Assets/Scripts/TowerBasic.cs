@@ -88,7 +88,7 @@ public class TowerBasic : MonoBehaviour
     {
         if (isPlaced && UnityEditor.EditorApplication.isPlaying == true)
         {
-            if (!hammerDestroyed)
+            if (!hammerDestroyed && hp <= 0)
             {
                 for (int i = 0; i < scrapDrop; i++)
                 {

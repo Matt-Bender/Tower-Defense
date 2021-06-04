@@ -16,26 +16,41 @@ public class LevelManager : MonoBehaviour
         {
             robotBuilder[i].SetActive(false);
         }
+        for (int i = 0; i < robotRocks.Length; i++)
+        {
+            robotRocks[i].SetActive(false);
+        }
     }
     // Start is called before the first frame update
     void Start()
     {
-        if (currentLevel == 1)
+        if(currentLevel == 0)
         {
             numRobotBuilders = 1;
         }
-        else if(currentLevel == 2)
+        if (currentLevel == 1)
         {
             numRobotBuilders = 2;
+            gameObject.GetComponent<TutorialManager>().DestroyTutorialManager();
+        }
+        else if(currentLevel == 2)
+        {
+            numRobotBuilders = 3;
+            gameObject.GetComponent<TutorialManager>().DestroyTutorialManager();
         }
         else if(currentLevel == 3)
         {
             numRobotBuilders = 5;
+            gameObject.GetComponent<TutorialManager>().DestroyTutorialManager();
         }
 
         for(int i = 0; i < numRobotBuilders; i++)
         {
             robotBuilder[i].SetActive(true);
+        }
+        for (int i = 0; i < numRobotBuilders; i++)
+        {
+            robotRocks[i].SetActive(true);
         }
     }
 
@@ -57,7 +72,7 @@ public class LevelManager : MonoBehaviour
         }
         if(activeBuilders == false)
         {
-            Debug.Log("You Win");
+            GoMenu();
         }
     }
 

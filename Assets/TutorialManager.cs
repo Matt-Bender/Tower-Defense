@@ -114,7 +114,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if (tutorialSection == 9)
         {
-            tutorialText.text = "Place the cannon to destroy the robot";
+            tutorialText.text = "Place the cannon to destroy the robot.";
             arrow.transform.position = new Vector3(-5.5f, 0f, -4);
         }
         else if (tutorialSection == 10)
@@ -127,7 +127,7 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialText.text = "You can also use the hammer to get rid of towers. Although be warned you lose the full tower cost";
             arrow.transform.position = new Vector3(-3.5f, 2f, -4);
-            Destroy(gameObject.GetComponent<TutorialManager>());
+            Invoke("DestroyTutorialManager", 5);
         }
     }
 
@@ -203,5 +203,13 @@ public class TutorialManager : MonoBehaviour
                 Tutorial();
             }
         }
+    }
+
+    public void DestroyTutorialManager()
+    {
+        Destroy(greyOut);
+        tutorialText.text = "";
+        Destroy(arrow);
+        Destroy(gameObject.GetComponent<TutorialManager>());
     }
 }
