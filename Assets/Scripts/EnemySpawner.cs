@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Vector3[] spawningLocations;
     [SerializeField] private GameObject[] enemies;
 
-    [SerializeField] private float timeBetweenEnemySpawn = 45;
+    private float timeBetweenEnemySpawn = 30;
     private float startingTimeBetweenEnemySpawn;
     private float TimeInterval;
     private bool isWave = false;
