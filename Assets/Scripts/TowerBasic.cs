@@ -86,7 +86,7 @@ public class TowerBasic : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (isPlaced && UnityEditor.EditorApplication.isPlaying == true)
+        if (isPlaced)
         {
             if (!hammerDestroyed && hp <= 0)
             {

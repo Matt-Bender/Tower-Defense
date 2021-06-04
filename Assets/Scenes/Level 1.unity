@@ -772,6 +772,7 @@ MonoBehaviour:
   - {x: 10.5, y: -4, z: -3}
   enemies:
   - {fileID: 757189512588870255, guid: d9c9613710b273048ab8a0a7b20d0c82, type: 3}
+  timeBetweenEnemySpawn: 45
 --- !u!114 &91513531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,7 +4249,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
