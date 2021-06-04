@@ -9,7 +9,6 @@ public class TowerBasic : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] private int resourceCost;
     [SerializeField] private int scrapCost;
-
     [SerializeField] private int scrapDrop = 1;
 
     [SerializeField] private GridBox gridBoxScript;
@@ -27,18 +26,9 @@ public class TowerBasic : MonoBehaviour
         gmScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetIsPlaced(bool placed)
     {
         isPlaced = placed;
-        if (isPlaced)
-        {
-        }
     }
 
     public bool GetIsPlaced()

@@ -27,10 +27,7 @@ public class GridBox : MonoBehaviour
         }
 
     }
-    private void FixedUpdate()
-    {
 
-    }
     private void OnMouseEnter()
     {
         if (gmScript.GetHoldingTower() && !towerPlaced)
@@ -81,21 +78,6 @@ public class GridBox : MonoBehaviour
         {
             tutorialScript.GetObjectPlaced(lastTowerPlaced);
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (towerPlaced)
-        //{
-        //    if (collision.CompareTag("Enemy"))
-        //    {
-        //        Debug.Log("Trigger Enemy");
-        //        if(lastTowerPlaced != null)
-        //        {
-        //            collision.gameObject.GetComponent<EnemyBasic>().GetTower(lastTowerPlaced);
-        //        }
-                
-        //    }
-        //}
     }
 
     public void SetTowerPlaced(bool isPlaced)
