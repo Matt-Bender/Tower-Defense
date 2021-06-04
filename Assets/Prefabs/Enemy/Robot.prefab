@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.5
-  maxHP: 5
+  maxHP: 8
   enemyBreakScript: {fileID: 0}
 --- !u!95 &5130215963635596296
 Animator:

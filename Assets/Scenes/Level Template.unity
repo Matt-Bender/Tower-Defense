@@ -772,6 +772,7 @@ MonoBehaviour:
   - {x: 10.5, y: -4, z: -3}
   enemies:
   - {fileID: 757189512588870255, guid: d9c9613710b273048ab8a0a7b20d0c82, type: 3}
+  timeBetweenEnemySpawn: 45
 --- !u!114 &91513531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,8 +800,8 @@ MonoBehaviour:
   TimeInterval: []
   Cooldown:
   - 3
-  - 5
-  - 5
+  - 3
+  - 3
   - 5
 --- !u!114 &91513532
 MonoBehaviour:

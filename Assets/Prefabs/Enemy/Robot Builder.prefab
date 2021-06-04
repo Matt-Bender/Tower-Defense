@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
-  maxHP: 10
+  maxHP: 15
   enemyBreakScript: {fileID: 0}
 --- !u!114 &770985108
 MonoBehaviour:

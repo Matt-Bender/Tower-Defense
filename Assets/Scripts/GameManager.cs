@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject scrap;
     //Default 0
-    private int scrapResource = 1;
+    private int scrapResource = 0;
     [SerializeField] private TextMeshProUGUI textScrapResourceCount;
 
     private CooldownManager cooldownScript;

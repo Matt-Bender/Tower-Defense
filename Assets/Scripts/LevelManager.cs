@@ -78,6 +78,6 @@ public class LevelManager : MonoBehaviour
 
     public void GoMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Menu");
     }
 }

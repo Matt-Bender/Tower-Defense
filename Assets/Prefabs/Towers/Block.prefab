@@ -141,7 +141,7 @@ MonoBehaviour:
   hp: 10
   resourceCost: 4
   scrapCost: 0
-  scrapDrop: 2
+  scrapDrop: 3
   gridBoxScript: {fileID: 0}
 --- !u!212 &5342019276551495945
 SpriteRenderer:

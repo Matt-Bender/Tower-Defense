@@ -800,8 +800,8 @@ MonoBehaviour:
   TimeInterval: []
   Cooldown:
   - 3
-  - 5
-  - 5
+  - 3
+  - 3
   - 5
 --- !u!114 &91513532
 MonoBehaviour:
