@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
         //    Instantiate(enemies[0], spawningLocations[i], Quaternion.identity);
         //}
         startingTimeBetweenEnemySpawn = timeBetweenEnemySpawn;
+        SpawnEnemy();
     }
 
     // Update is called once per frame

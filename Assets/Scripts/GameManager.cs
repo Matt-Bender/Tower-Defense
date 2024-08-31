@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("TEST")]
+    [SerializeField] private bool testerMode;
     [Header("TOWERS", order = 0)]
 
     [Header("Generator", order = 1)]
@@ -62,6 +64,11 @@ public class GameManager : MonoBehaviour
         AddBasicResource(0);
         AddScrapResource(0);
 
+        if (testerMode)
+        {
+            AddBasicResource(99);
+            AddScrapResource(99);
+        }
         cooldownScript = GetComponent<CooldownManager>();
         lifeScript = GetComponent<LifeManager>();
 
