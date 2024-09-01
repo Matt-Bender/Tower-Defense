@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
                 temp.transform.position = new Vector3(hit.point.x, hit.point.y, -1);
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            DeselectTower();
+        }
     }
     //On Click tower to choose which you will build
     public void OnClick(GameObject tower, GameObject tempTower)
@@ -117,15 +122,15 @@ public class GameManager : MonoBehaviour
 
 
     }
-
     public void GeneratorOnClick()
     {
         OnClick(generator, tempGenerator);
         
     }
+    //Sets temp to null so it doesn't show hammer as a light tower on grid
     public void HammerOnClick()
     {
-        OnClick(hammer, tempHammer);
+        OnClick(hammer, null);
     }
 
     public void BlockOnClick()
@@ -218,6 +223,13 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void DeselectTower()
+    {
+        SetHeldTower(null);
+        Destroy(temp);
+        holdingTower = false;
     }
 
     public void LoseLife()

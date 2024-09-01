@@ -17,15 +17,14 @@ public class GridBox : MonoBehaviour
         tutorialScript = GameObject.Find("GameManager").GetComponent<TutorialManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        //Allows for right click to place tower
-        if (temp != null && Input.GetMouseButtonDown(1))
+        //Checks GameManager if tower is not being held
+        //So that when tower is deselected it doesn't show the placement on grid
+        if (!gmScript.GetHoldingTower())
         {
-            PlaceTower();
+            Destroy(temp);
         }
-
     }
 
     private void OnMouseEnter()
