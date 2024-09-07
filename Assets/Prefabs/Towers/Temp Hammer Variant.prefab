@@ -12,6 +12,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 369061317278655130, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 369061317278655130, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 369061317278655130, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.31186765
       objectReference: {fileID: 0}
@@ -52,12 +60,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 369061317278655131, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0b5e09d8378ea094ca71f96bb43de88f, type: 3}
+    - target: {fileID: 369061317278655131, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
       propertyPath: m_Color.a
       value: 0.39215687
       objectReference: {fileID: 0}
     - target: {fileID: 369061317278655132, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
       propertyPath: m_Name
-      value: Temp Hammer
+      value: Temp Hammer Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a0221e0b3910564cb8896090087208e, type: 3}
