@@ -63,6 +63,8 @@ MonoBehaviour:
   isPlaced: 0
   hp: 3
   resourceCost: 2
+  scrapCost: 0
+  scrapDrop: 1
   gridBoxScript: {fileID: 0}
 --- !u!212 &8301748462673261347
 SpriteRenderer:
@@ -104,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17a3cbc709f9c4a489dbd81cfd1f4492, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a0c546598b7d8d40a23f70061308178, type: 3}
   m_Color: {r: 0.5882353, g: 0.84705883, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
