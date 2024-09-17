@@ -7,13 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3625959933400310446, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625959933400310446, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342019276551495945, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ece8e6783573eff4b8cb643d0c1d2130, type: 3}
     - target: {fileID: 5342019276551495945, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
       propertyPath: m_Color.a
       value: 0.39215687
       objectReference: {fileID: 0}
     - target: {fileID: 7462608132174979242, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
       propertyPath: m_Name
-      value: Temp Block
+      value: Temp Block Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7462608132174979246, guid: 3c7cdd5ce17a28a49a9169330968903f, type: 3}
       propertyPath: m_RootOrder
